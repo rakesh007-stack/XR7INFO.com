@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Fire Player Info - Check Player Stats</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="https://img.ffinfo.in/img/logo.png">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <img src="https://img.ffinfo.in/img/logo.png" alt="Free Fire Logo">
+                <h1>Free Fire <span class="highlight">Player Info</span></h1>
+            </div>
+            <p class="tagline">Check Free Fire player statistics, rankings, and profile details</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="info-card">
+                <h2><i class="fas fa-search"></i> Check Player Information</h2>
+                <p class="description">Enter the Player UID to get detailed statistics including rank, level, clan info, and more.</p>
+                
+                {% if error %}
+                <div class="error-message">
+                    <i class="fas fa-exclamation-circle"></i> {{ error }}
+                </div>
+                {% endif %}
+                
+                <form id="playerForm" action="/get_player_info" method="POST">
+                    <div class="form-group">
+                        <label for="uid"><i class="fas fa-user-circle"></i> Player UID</label>
+                        <input type="text" id="uid" name="uid" placeholder="Enter Player UID (e.g., 5263194623)" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="region"><i class="fas fa-globe"></i> Region</label>
+                        <select id="region" name="region">
+                            <option value="IND" selected>IND (India)</option>
+                            <option value="BD">BD (Bangladesh)</option>
+                            <option value="PK">PK (Pakistan)</option>
+                            <option value="US">US (USA)</option>
+                            <option value="EU">EU (Europe)</option>
+                            <option value="ME">ME (Middle East)</option>
+                            <option value="ALL">ALL (All Regions)</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-search"></i> Check Player Info
+                    </button>
+                </form>
+                
+                <div class="example">
+                    <p><i class="fas fa-lightbulb"></i> <strong>Example UIDs:</strong> 5263194623, 9075023941, 1234567890</p>
+                </div>
+            </div>
+            
+            <!-- Features Section -->
+            <div class="features">
+                <h2><i class="fas fa-star"></i> What You Can Check</h2>
+                <div class="feature-grid">
+                    <div class="feature">
+                        <i class="fas fa-trophy"></i>
+                        <h3>Rank & Level</h3>
+                        <p>Current rank, level, and ranking points</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-users"></i>
+                        <h3>Clan Info</h3>
+                        <p>Clan name, level, and member count</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Weapons & Skills</h3>
+                        <p>Equipped weapons and skills</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-paw"></i>
+                        <h3>Pet Info</h3>
+                        <p>Pet details and selected skills</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2024 Free Fire Player Info • Powered by <span class="highlight">SENKU CODEX</span></p>
+            <p class="disclaimer">This tool is not affiliated with Garena Free Fire. All game data belongs to Garena.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-telegram"></i> Telegram</a>
+                <a href="#"><i class="fab fa-github"></i> GitHub</a>
+                <a href="#"><i class="fas fa-code"></i> Developer</a>
+            </div>
+        </footer>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
